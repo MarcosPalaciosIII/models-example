@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 mongoose
-  .connect(process.env.MONGODB_URI || 'mongodb://localhost/express-template-no-auth', {
+  .connect(process.env.MONGODB_URI || 'mongodb://localhost/models-example', {
     useCreateIndex: true, 
     useNewUrlParser: true, 
     useUnifiedTopology: true, 

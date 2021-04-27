@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 const Cat = require("../models/User"); /** Add a model to use for your seed file here */
 
 mongoose
-  .connect('mongodb://localhost/express-template-no-auth', {useNewUrlParser: true})
+  .connect('mongodb://localhost/models-example', {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`);
   })
