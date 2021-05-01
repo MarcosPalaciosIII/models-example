@@ -4,7 +4,7 @@
 // $ node bin/seeds.js
 
 const mongoose = require("mongoose");
-const Cat = require("../models/User"); /** Add a model to use for your seed file here */
+const Cat = require("../models/Cat"); /** Add a model to use for your seed file here */
 
 mongoose
   .connect('mongodb://localhost/models-example', {useNewUrlParser: true})

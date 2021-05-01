@@ -1,8 +1,26 @@
+$warning: #ff0000c7;
+
+@mixin center-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    padding: 50px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+    color: #00b7ff;
+}
+
+.error-message {
+    color: $warning;
+}
+
+.siblings-list-box {
+    @include center-content();
+    align-items: start;
 }

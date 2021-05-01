@@ -1,0 +1,43 @@
+<h2>{{#if cat.canModify}} Edit {{else}} Details {{/if}} for {{cat.name}}</h2>
+
+{{#if cat.canModify}}
+<form action="/cats/update/{{cat._id}}" method="POST">
+  <label for="catNameInput">Name: <input id="catNameInput" type="text" required name="name"
+      value="{{cat.name}}"></label>
+  <label for="catColorInput">Color: <input id="catColorInput" type="text" required name="color"
+      value="{{cat.color}}"></label>
+  <br>
+  <br>
+  <label for="siblingsInput"><u>Siblings</u></label>
+  <div class="siblings-list-box">
+    {{#each cats}}
+    <label for="scales"><input id="siblingsInput" type="checkbox" name="siblings" value="{{this._id}}"
+        {{#if catSelected}} checked {{/if}}>
+      {{this.name}}</label>
+    {{/each}}
+  </div>
+  <br>
+  <button>Update</button>
+</form>
+
+{{#if errorMessage}}
+<h4 class='error-message'>*{{errorMessage}}</h4>
+{{/if}}
+
+{{else}}
+<div>
+  <h3>Name: {{cat.name}}</h3>
+  <h4>Color: {{cat.color}}</h4>
+  <h4><u>Siblings</u></h4>
+  <div class="siblings-list-box">
+    {{#each cat.siblings}}
+    <h5>{{this.name}}</h5>
+    {{/each}}
+  </div>
+
+  {{!-- <button><a href="/cats/edit/{{cat._id}}">Edit</a></button> --}}
+  <button><a href="/cats/details/{{cat._id}}?canEdit=blah">Edit</a></button>
+  <button><a href="/cats/delete/{{cat._id}}">Delete</a></button>
+  <br />
+</div>
+{{/if}}

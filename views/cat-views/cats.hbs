@@ -1,0 +1,15 @@
+<h2> List of Cats </h2>
+<hr>
+<br>
+<button><a href="/cats/create">Create Cat</a></button>
+<br>
+<br>
+<hr>
+
+<div class="cats-container">
+  {{#each cats}}
+  <div class="cat-box">
+    <a href="/cats/details/{{this.id}}">{{this.name}}</a>
+  </div>
+  {{/each}}
+</div>

@@ -1,0 +1,25 @@
+<h2>Create a Cat</h2>
+<hr>
+<br>
+
+<form action="/cats/create" method="POST">
+  <label for="catNameInput">Name: <input id="catNameInput" type="text" required name="name" value="{{name}}"></label>
+  <label for="catColorInput">Color: <input id="catColorInput" type="text" required name="color"
+      value='{{color}}'></label>
+  <br>
+  <br>
+  <label for="siblingsInput"><u>Siblings</u></label>
+  <div class="siblings-list-box">
+    {{#each cats}}
+    <label for="scales"><input id="siblingsInput" type="checkbox" name="siblings" value="{{this._id}}"
+        {{#if catSelected}} checked {{/if}}>
+      {{this.name}}</label>
+    {{/each}}
+  </div>
+  <br>
+  <button>Create</button>
+</form>
+
+{{#if errorMessage}}
+<h4 class='error-message'>*{{errorMessage}}</h4>
+{{/if}}
