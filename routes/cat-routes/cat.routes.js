@@ -20,11 +20,11 @@ router.get('/create', (req, res, next) => {
 /** Post Cat Create  <Create Route> */
 router.post('/create', (req, res, next) => {
   // console.log({colorInput: `${req.body.color.charAt(0).toUpperCase()}${req.body.color.slice(1)}`});
-  const isColorValid = catColorEnum.filter(color => `${req.body.color.charAt(0).toUpperCase()}${req.body.color.slice(1)}` === color).length > 0;
+  const isColorValid = catColorEnum.filter(color => req.body.color.toLowerCase() === color.toLowerCase()).length > 0;
 
-  console.log({body: req.body});
+  // console.log({body: req.body});
 
-  if(!isColorValid) {
+  if(!isColorValid || !req.body.name) {
     Cat.find()
     .then(catsFromDb => { 
     // res.redirect('/cats/create?errorMessage=Please Select A Valid Color For Your Feline');
@@ -59,7 +59,16 @@ router.post('/create', (req, res, next) => {
 router.get('/', (req, res, next) => {
   Cat.find()
   .then(catsFromDb => {
-    res.render('cat-views/cats', { cats: catsFromDb });
+    console.log({query: req.query.searchQuery, value: !req.query.searchQuery });
+    // const cats = !req.query.searchQuery ? catsFromDb.map(cat => cat.length) : catsFromDb.map(cat => cat.includes(req.query.searchQuery)); /** Rachel's Solution  ^ */
+    const cats = !req.query.searchQuery ? catsFromDb : catsFromDb.map(cat => {
+      if(cat.name.toLowerCase().includes(req.query.searchQuery.toLowerCase())) {
+        return cat;
+      }
+    }).filter(cat => !!cat);
+
+    console.log({cats});
+    res.render('cat-views/cats', { cats });
   }).catch(err => next(err));
 });
 
@@ -116,9 +125,9 @@ router.post('/update/:catId', (req, res, next) => {
     siblings: req.body.siblings
   };
 
-  const isColorValid = catColorEnum.filter(color => `${req.body.color.charAt(0).toUpperCase()}${req.body.color.slice(1)}` === color).length > 0;
+  const isColorValid = catColorEnum.filter(color => req.body.color.toLowerCase() === color.toLowerCase()).length > 0;
 
-  if(!isColorValid) {
+  if(!isColorValid || !req.body.name.length) {
     res.redirect(`/cats/details/${req.params.catId}?errorMessage=Please Select A Valid Color For Your Feline&canEdit=true`);
       return;
   }

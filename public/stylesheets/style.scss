@@ -16,6 +16,12 @@ a {
     color: #00b7ff;
 }
 
+.center-align {
+    @include center-content();
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .error-message {
     color: $warning;
 }

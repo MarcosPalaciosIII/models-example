@@ -5,6 +5,14 @@ body {
 a {
   color: #00b7ff; }
 
+.center-align {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between; }
+
 .error-message {
   color: #ff0000c7; }
 
