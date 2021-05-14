@@ -1,0 +1,19 @@
+<h2>Homes</h2>
+<hr>
+<br>
+<div class="center-align">
+  <button><a href="/homes/create">Create Home</a></button>
+  <form action="/homes" method="get"><input type="text" name="searchQuery"><button>Search</button></form>
+  <div></div>
+</div>
+<br>
+<br>
+<hr>
+
+<div class="cats-container">
+  {{#each homes}}
+  <div class="cat-box">
+    <a href="/homes/details/{{this.id}}">{{this.ownerName}}</a>
+  </div>
+  {{/each}}
+</div>

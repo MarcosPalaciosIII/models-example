@@ -7,7 +7,7 @@ const catSchema = new Schema({
     type: String,
     enum: ['Black', 'Orange', 'Bi-Color', 'White', 'Grey']
   },
-  siblings: {type: [{type: Schema.Types.ObjectId, ref: 'Cat'}]}
+  siblings: {type: [{type: Schema.Types.ObjectId, ref: 'Cat'}]},
 }, {
   timestamps: {
     createdAt: 'created_at',

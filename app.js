@@ -44,6 +44,7 @@ app.locals.title = 'Cats Express Example';
 
 app.use('/', require('./routes/index'));
 app.use('/cats', require('./routes/cat-routes/cat.routes'));
+app.use('/homes', require('./routes/home-routes/home.routes'));
 
 
 module.exports = app;
