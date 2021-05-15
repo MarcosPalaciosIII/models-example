@@ -1,0 +1,33 @@
+<h2>Create a Cat</h2>
+<hr>
+<br>
+
+<form action="/homes/create" method="POST">
+  <label for="homeNameInput">Owner: <input id="homeNameInput" type="text" required name="ownerName"
+      value="{{ownerName}}"></label>
+  <br>
+  <br>
+  <label for="homeHouseNumberInput">House Number: <input id="homeHouseNumberInput" type="text" required
+      name="houseNumber" value='{{address.houseNumber}}'></label>
+  <label for="homeAptNumberInput">Apt: <input id="homeAptNumberInput" type="text" name="aptNumber"
+      value='{{address.aptNumber}}'></label>
+  <br>
+  <br>
+  <label for="homeStreetNameInput">Street Name: <input id="homeStreetNameInput" type="text" required name="streetName"
+      value='{{address.streetName}}'></label>
+  <label for="homeCityInput">City: <input id="homeCityInput" type="text" required name="city"
+      value='{{address.city}}'></label>
+  <br>
+  <br>
+  <label for="homeCityInput">State: <input id="homeCityInput" type="text" required name="state"
+      value='{{address.state}}'></label>
+  <label for="homeZipInput">Zip: <input id="homeZipInput" type="number" minlength="5" required name="zip"
+      value='{{address.zip}}'></label>
+  <br>
+  <br>
+  <button>Create</button>
+</form>
+
+{{#if errorMessage}}
+<h4 class='error-message'>*{{errorMessage}}</h4>
+{{/if}}

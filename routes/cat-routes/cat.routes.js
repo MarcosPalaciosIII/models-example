@@ -1,6 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 const Cat = require('../../models/Cat');
+const Home = require('../../models/Home');
 const catColorEnum = ['Black', 'Orange', 'Bi-Color', 'White', 'Grey'];
 
 
@@ -146,9 +147,22 @@ router.post('/update/:catId', (req, res, next) => {
 
 /** Post Cat Delete <Delete Route> */
 router.get('/delete/:catId', (req, res, next) => {
-  Cat.findByIdAndDelete(req.params.catId)
-  .then(() => {
-    res.redirect(`/cats`);
+  Home.find()
+  .then(homes => {
+    homes.map(home => {
+      if(home.cats.includes(String(req.params.catId))) {
+        home.cats.pull(req.params.catId);
+        home.save();
+      }
+      return home;
+    });
+    Promise.all(homes)
+    .then(() => {
+      Cat.findByIdAndDelete(req.params.catId)
+      .then(() => {
+        res.redirect(`/cats`);
+      }).catch(err => next(err));
+    }).catch(err => next(err));
   }).catch(err => next(err));
 });
 

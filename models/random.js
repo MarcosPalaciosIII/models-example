@@ -10,7 +10,7 @@ module.exports = addressObject = {
   aptNumber: { type: String },
   streetName: { type: String },
   city: { type: String },
-  state: { type : String },
+  state: { type: String },
   zip: { type: Number }
 };
 

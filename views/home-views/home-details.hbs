@@ -1,0 +1,88 @@
+<h2>{{#if home.canModify}} Edit {{else}} Details {{/if}} for {{home.ownerName}}</h2>
+
+{{#if home.canModify}}
+{{!-- <form action="/cats/update/{{cat._id}}" method="POST">
+  <label for="catNameInput">Name: <input id="catNameInput" type="text" required name="name"
+      value="{{cat.name}}"></label>
+  <label for="catColorInput">Color: <input id="catColorInput" type="text" required name="color"
+      value="{{cat.color}}"></label>
+  <br>
+  <br>
+  <label for="siblingsInput"><u>Siblings</u></label>
+  <div class="siblings-list-box">
+    {{#each cats}}
+    <label for="scales"><input id="siblingsInput" type="checkbox" name="siblings" value="{{this._id}}"
+        {{#if catSelected}} checked {{/if}}>
+      {{this.name}}</label>
+    {{/each}}
+  </div>
+  <br>
+  <button>Update</button>
+</form> --}}
+
+<form action="/homes/update/{{home._id}}" method="POST">
+  <label for="homeNameInput">Owner: <input id="homeNameInput" type="text" required name="ownerName"
+      value="{{home.ownerName}}"></label>
+  <br>
+  <br>
+  <label for="homeHouseNumberInput">House Number: <input id="homeHouseNumberInput" type="text" required
+      name="houseNumber" value='{{home.address.houseNumber}}'></label>
+  <label for="homeAptNumberInput">Apt: <input id="homeAptNumberInput" type="text" name="aptNumber"
+      value='{{home.address.aptNumber}}'></label>
+  <br>
+  <br>
+  <label for="homeStreetNameInput">Street Name: <input id="homeStreetNameInput" type="text" required name="streetName"
+      value='{{home.address.streetName}}'></label>
+  <label for="homeCityInput">City: <input id="homeCityInput" type="text" required name="city"
+      value='{{home.address.city}}'></label>
+  <br>
+  <br>
+  <label for="homeCityInput">State: <input id="homeCityInput" type="text" required name="state"
+      value='{{home.address.state}}'></label>
+  <label for="homeZipInput">Zip: <input id="homeZipInput" type="number" minlength="5" required name="zip"
+      value='{{home.address.zip}}'></label>
+  <br>
+  <br>
+  {{!-- <label for="catsInHomeInput"><u>Cats in Home</u></label>
+  <div class="siblings-list-box">
+    {{#each cats}}
+    <label for="scales"><input id="catsInHomeInput" type="checkbox" name="cats" value="{{this._id}}" {{#if catSelected}}
+        checked {{/if}}>
+      {{this.name}}</label>
+    {{/each}}
+  </div>
+  <br> --}}
+  <button>Update</button>
+</form>
+
+<h4><u>Cats in Home</u></h4>
+<div class="siblings-list-box">
+  {{#each cats}}
+  <h5>{{this.name}} <a href="/homes/addRemove/{{this._id}}/{{../home._id}}">{{#if this.catSelected}} Remove
+      {{else}} Add {{/if}}</a></h5>
+  {{/each}}
+</div>
+
+{{#if errorMessage}}
+<h4 class='error-message'>*{{errorMessage}}</h4>
+{{/if}}
+
+{{else}}
+<div>
+  <h3>Owner Name: {{home.ownerName}}</h3>
+  <h4>Address: {{home.address.houseNumber}} {{home.address.streetName}} {{#if home.address.aptNumber}}
+    #{{home.address.aptNumber}} {{/if}}
+    {{home.address.city}}, {{home.address.state}}. {{home.address.zip}}
+  </h4>
+  <h4><u>Cats in Home</u></h4>
+  <div class="siblings-list-box">
+    {{#each home.cats}}
+    <h5>{{this.name}}</h5>
+    {{/each}}
+  </div>
+
+  <button><a href="/homes/details/{{home._id}}?canEdit=blah">Edit</a></button>
+  <button><a href="/homes/delete/{{home._id}}">Delete</a></button>
+  <br />
+</div>
+{{/if}}
