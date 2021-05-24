@@ -1,4 +1,6 @@
 $warning: #ff0000c7;
+$link-color: #b6cffc9e;
+$body-background: #2c5d7a99;
 
 @mixin center-content {
     display: flex;
@@ -8,12 +10,50 @@ $warning: #ff0000c7;
 }
 
 body {
-    padding: 50px;
+    margin: 0;
+    padding: 4vw 5vw 0 5vw;
+    background-color: $body-background;
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-    color: #00b7ff;
+    color: $link-color;
+    text-decoration: none;
+}
+
+button {
+    border-radius: 10px;
+    background-color: black;
+    padding: 0.3vw 0.6vw;
+}
+
+nav {
+    @include center-content();
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    border-bottom: 1px solid darkslategrey;
+    background-color: slategrey;
+    height: 4vw;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 5vw;
+
+    div:nth-child(1) {
+        @include center-content();
+        flex-direction: row;
+        justify-content: space-between;
+        width: 10vw;
+    }
+}
+
+form {
+    button {
+        border-radius: 5px;
+        background-color: white;
+        padding: 0.1vw 0.6vw;
+    }
 }
 
 .center-align {
